@@ -1,0 +1,28 @@
+{
+  "name": "wp-themename-src",
+  "version": "0.0.1",
+  "authors": [
+    "Ueli Banholzer <ueli@whatwedo.ch>",
+    "René Stalder <rene@whatwedo.ch>"
+  ],
+  "description": "",
+  "license": "All rights reserved",
+  "homepage": "http://whatwedo.ch/",
+  "private": true,
+  "devDependencies": {
+    "bower": "~1.2.6",
+    "grunt": "~0.4.1",
+    "grunt-yui-compressor": "~0.3.0",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-contrib-copy": "~0.4.1",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-sass": "~0.5.0",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-watch": "~0.5.3"
+  },
+  "folders": {
+    "build_prod": "../themename",
+    "build_dev": "../themename-dev",
+    "cache": "build-cache"
+  }
+}
