@@ -33,8 +33,6 @@ global $client; ?>
 
         <link rel="stylesheet" href="<?php echo get_stylesheet_uri(); ?>">
         <script src="<?php echo get_template_directory_uri(); ?>/javascripts/vendor/modernizr.js"></script>
-        <script type="text/javascript" src="//use.typekit.net/tdg1dtc.js"></script>
-        <script type="text/javascript">try{Typekit.load();}catch(e){}</script>
 
         <?php wp_head(); ?>
 
