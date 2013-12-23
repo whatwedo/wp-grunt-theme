@@ -132,9 +132,16 @@ module.exports = function(grunt) {
                     ].join('\n'),
                     style: build.env == "dev" ? 'expanded' : 'compressed'
                 },
-                files: {
-                    '<%= grunt.option(\'build\').folder %>/style.css': 'scss/app.scss',
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'scss',
+                    src: [
+                        "**/*.scss",
+                        "!**/_*.scss"
+                    ],
+                    dest: '<%= grunt.option(\'build\').folder %>',
+                    ext: '.css'
+                }]
             }
         },
 
