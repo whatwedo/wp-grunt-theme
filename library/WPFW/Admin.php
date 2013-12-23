@@ -120,6 +120,8 @@ class Admin
                 background-size: contain;
                 background-position: center center;
                 margin-bottom: 15px;
+                width: auto;
+                background-size: initial;
             }
         </style>
 <?php
