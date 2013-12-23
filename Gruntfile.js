@@ -116,7 +116,7 @@ module.exports = function(grunt) {
         },
 
         /**
-         * SASS / SCSS inkl. WordPress-Banner
+         * SASS / SCSS and WordPress-Banner
          */
         sass: {
             dist: {
@@ -127,14 +127,21 @@ module.exports = function(grunt) {
                         ' * Theme URI: http://whatwedo.ch/',
                         ' * Author: whatwedo.ch-Team',
                         ' * Author URI: http://whatwedo.ch',
-                        ' * Version: 1.0',
+                        ' * Version: 1.0' + (build.env == "dev" ? " -dev" : ""),
                         ' **/\n'
                     ].join('\n'),
                     style: build.env == "dev" ? 'expanded' : 'compressed'
                 },
-                files: {
-                    '<%= grunt.option(\'build\').folder %>/style.css': 'scss/app.scss',
-                }
+                files: [{
+                    expand: true,
+                    cwd: 'scss',
+                    src: [
+                        "**/*.scss",
+                        "!**/_*.scss"
+                    ],
+                    dest: '<%= grunt.option(\'build\').folder %>',
+                    ext: '.css'
+                }]
             }
         },
 
