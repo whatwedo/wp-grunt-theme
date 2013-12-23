@@ -116,7 +116,7 @@ module.exports = function(grunt) {
         },
 
         /**
-         * SASS / SCSS inkl. WordPress-Banner
+         * SASS / SCSS and WordPress-Banner
          */
         sass: {
             dist: {

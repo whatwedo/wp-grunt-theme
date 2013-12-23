@@ -1,78 +1,100 @@
 # wp-grunt-theme
 
-**---WIP---**
+A grunt theme boilerplate, compiles and minifies files and copy them from the ```theme-src```to a ```theme```and ```theme-dev```folder.
 
 ## 1. Installation
-1. in ```/wp-content/themes/themename-src/``` kopieren
-2. mit ```make install``` alle NPM und Bower-Abhängigkeiten installieren
-3. in ```Gruntfile.js``` sass-Banner anpassen
-4. in ```package.json``` prod / dev Ordner + gewünschte Attribute (z.B. Name, Autor etc.) anpassen
-5. in ```bower.json``` gewünschte Attribute (z.B. Name, Autor etc.) anpassen
-5. in ```library/app``` / ```library/Theme/*``` "Theme" in Namespace, Klasse, Ordner und Datei in jeweiligen Themenamen ändern
-6. in ```library/WPFW/Plugins.php``` Plugin-Abhängikeiten anpassen
+1. Copy all files and folders to ```/wp-content/themes/<Themename>-src/``` 
+2. Use ```make install``` inside your terminal to get all NPM modules and bower dependencies.
 
+## 2. Configuration
 
-## 2. Funktionsweise
-Erstellt aus ```themename-src``` ein aufbereitetes Template mit dem Namen ```themename``` (produktiv) oder ```themename-dev``` (development).
+### Theme Banner / Name
+Edit ```Gruntfile.js``` somewhere around line 125, to customize the WordPress Theme Banner, which will be shown in the theme options in WordPress.
 
-## 3. Abhängigkeiten
+### Build folders for development and productive
 
-### 3.1. Gems
-* **bundler** - installiert Gem's basierend auf dem ```Gemfile```
+Edit ```package.json``` to set development and productive folder names. Also edit theme name, author, etc. which are used as grunt manifest.
+
+### Javascript resources, vendors, plugins and bower manifest
+
+Edit ```bower.json``` to add additional Javascript resources and plugins you want to use in your theme. Also edit theme name, author, etc. which are used as bower manifest.
+
+### *(optional)* Adding required plugins
+
+You can ensure that your theme users install the required plugins without writing them 10 pages of manual. Just extend the ```library/WPFW/Plugins.php``` with additional plugins. We already added some of the plugins we use regulary. You are free to remove them.
+
+## 3. Working with the wp-grunt-theme
+
+### Server-side code & functions.php
+
+The wp-grunt-theme extends the functions.php with own files to keep the code clean and easy. You can use the ```library/Theme/Theme.php```to add server-side code you normally would add to the functions.php. The ```library/app.php```then includes your program code from your subfolder. The functions.php is going to include both, the framework.php and the app.php.
+
+You are free to rename Theme.php or its folder, also the reference in the app.php, mirror your naming and theme conventions.
+
+We mostly use the theme's name as best practice, being able to use it as namespace too.
+
+### Building your theme for development and production
+
+Access your theme folder via terminal and use ```grunt``` to build your theme. If there are no errors, you'll get two folders as output:
+
+- ```themename-dev``` - Your themes files like SCSS are compiled, but not combined or minifed, so your are able to debug things in browser.
+- ```themename``` - That's your theme for productions. Files are compiled, minified and combined to enhance speed and performance.
+
+You can add additional parameters to customize your build.
+
+```
+grunt        # Complete build for development and production
+grunt js     # Compiles javascript and coffee script only
+grunt assets # Compiles assets (Templates, Library, ...) only
+grunt sass   # Compiles SCSS only
+grunt watch  # Activates the watcher which compiles your theme as soon changes are made
+```
+
+Every command can expanded with the flags ```--env=dev``` (default) to only build a development version, or ```--env=prod``` to only build a production version.
+
+#### Live Editing
+While ```grunt watch``` is active, the LiveReload Browser plugin can be used to mirror all changes to the browser as soon they are compiled.  <http://goo.gl/CK03sy>
+
+---
+
+## What's inside?
+
+### Gems
+* **bundler** - installs gem packages set in the ```Gemfile```
 * **compass** - CSS Authoring Framework
-* **oily_png** - schnellere Komprimierung für ChunkyPNG dank nativer C-Library (genutzt für Sprites)
+* **oily_png** - Compress PNGs faster with ChunkyPNG thanks to a native c library. Used for sprites.
 
-### 3.1. NPM
-Werden zur vereinfachten Entwicklungs-Workflow verwendet.
+### NPM
+Node Packages to enhance the build workflow for productive and development state.
 
-* **grunt** - automatisierter Build-Vorgang
-  * **grunt-yui-compressor** - replacement für UglifyJS, da dieses einige fehlende Features hat, auch für CSS verwendet
-  * **grunt-contrib-clean** - automatischer Clean-Vorgang für das Projekt
-  * **grunt-contrib-copy** - kopiert Abhängigkeiten in den Build-Ordner
-  * **grunt-contrib-coffee** - komprimiert CoffeeScript in JavaScript
-  * **grunt-contrib-sass** - SASS/SCSS Vorkompillierer
-  * **grunt-contrib-concat** - fügt mehrere Dateien zusammen
-  * **grunt-contrib-watcher** - Watcher-Funktionalitäten
-* **bower** - Package-Manager für JavaScript, für Vendor-Daten verwendet (z.B. jQuery)
+* **grunt** - Runs automatic tasks when you start building your theme
+  * **grunt-yui-compressor** - Compresses things, you know
+  * **grunt-contrib-clean** - Cleans folders for new builds
+  * **grunt-contrib-copy** - Copies files
+  * **grunt-contrib-coffee** - Doesn't make coffee, but compiles coffee script
+  * **grunt-contrib-sass** - Compiles SASS/SCSS
+  * **grunt-contrib-concat** - Merges files
+  * **grunt-contrib-watcher** - Watches your files for changes
+* **bower** - Package management for Javascript files
 
-### 3.2. Bower
-Sind Komponente der Webseite selber.
+### Bower
+Package manager to handle external Javascript files (i.e. jQuery or plugins). 
 
-* **Zurb Foundation** - mobile-first Framework (SCSS Standalone Version)
-* **jQuery** - umfangreiche JavaScript Library (Verison 1.10.* genutzt, da jQuery 2 nicht mit IE6-8 kompitabel ist)
-* **modernizr** - zur Erkennung von Browser-Funkionalitäten und aktivieren von HTML5 Elementen in älteren Browsern
-* **TGM Plugin Activation** - PHP Library zum Voraussetzen von Plugins für WordPress
+* **Zurb Foundation** - mobile-first HTML5/SCSS boilerplate (SCSS Standalone Version)
+* **jQuery** - C'mon, everybody knows jQuery. (version 1.10.*)
+* **modernizr** - To check for browser features
+* **TGM Plugin Activation** - PHP Library to set required theme plugins
 
-
-## 4. Entwicklungsumgebung
-Bei jeder Änderung an Files muss ``grunt`` ausgeführt werden.
-
-### 4.1 grunt-Builds
-``grunt`` kann wie folgt parametrisiert werden:
+## Folders and files
 
 ```
-grunt        # komplettes Build erstellen
-grunt js     # nur JavaScript / CoffeeScript verarbeiten
-grunt assets # nur Assets (Templates, Library, ...) verarbeiten
-grunt sass   # nur SCSS verarbeiten
-grunt watch  # Watcher aktivieren
+/images             # Images your theme is using
+/javascripts        # Your javascript files (shouldn't be used for external files)
+/javascripts/coffee # Coffee script files
+/library            # Your server-side code
+/scss               # SCSS files
+/templates          # The WordPress Template files you already should know
 ```
 
-Hinter jedem Command kann ```--env=dev``` (Standardwert) oder ```--env=prod``` hinzugefügt werden, um den Befehl jeweils auf das Produktiv oder Development-Template anzuwenden.
-
-### 4.2. Live Editing
-Während ```grunt watch``` ist Live Editing enabled. Dazu wird dieses Plugin verwendet: <http://goo.gl/CK03sy>
-
-## 5. Ordnerstruktur
-
-```
-/images             # Bilder
-/javascripts        # JavaScript Dateien
-/javascripts/coffee # CoffeeScript Dateien
-/library            # WordPress Modifikationen (Backend etc.)
-/scss               # SCSS
-/templates          # normale WordPress Theme-Files
-```
-
-## 6. Danke
-* [bones starter theme](https://github.com/eddiemachado/bones) für viele Ideen und SCSS Vorlagen!
+## Thanks
+* [bones starter theme](https://github.com/eddiemachado/bones) for inspiration and a cool boilerplate.
