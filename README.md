@@ -35,12 +35,24 @@ We mostly use the theme's name as best practice, being able to use it as namespa
 
 ### Building your theme for development and production
 
-Access your theme folder via terminal and use ```grunt``` to build your theme. If there are no errors, you'll get two folders as output:
+Access your theme folder via terminal and use ```grunt``` to build your theme or one of the shortcuts. Depending on the command you use, you get several folders:
 
 - ```themename-dev``` - Your themes files like SCSS are compiled, but not combined or minifed, so your are able to debug things in browser.
 - ```themename``` - That's your theme for productions. Files are compiled, minified and combined to enhance speed and performance.
 
-You can add additional parameters to customize your build.
+#### Shortcuts
+
+You can either use these shortcuts to enhance your workflow, or use default grunt commands. There are 3 shortcuts:
+
+```
+make dev     # Complete build for development
+make prod    # Complete build for production
+make watch   # Activates the watcher which compiles your theme as soon changes are made
+```
+
+#### Grunt commands
+
+If you are using the grunt commands, you get some more options to customize your build:
 
 ```
 grunt        # Complete build for development and production
@@ -50,7 +62,7 @@ grunt sass   # Compiles SCSS only
 grunt watch  # Activates the watcher which compiles your theme as soon changes are made
 ```
 
-Every command can expanded with the flags ```--env=dev``` (default) to only build a development version, or ```--env=prod``` to only build a production version.
+Every command can be expanded with the flags ```--env=dev``` (default) to only build a development version, or ```--env=prod``` to only build a production version.
 
 #### Live Editing
 While ```grunt watch``` is active, the LiveReload Browser plugin can be used to mirror all changes to the browser as soon they are compiled.  <http://goo.gl/CK03sy>
