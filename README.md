@@ -92,8 +92,8 @@ Node Packages to enhance the build workflow for productive and development state
 ### Bower
 Package manager to handle external Javascript files (i.e. jQuery or plugins). 
 
-* **Zurb Foundation** - mobile-first HTML5/SCSS boilerplate (SCSS Standalone Version)
-* **jQuery** - C'mon, everybody knows jQuery. (version 1.10.*)
+* **Zurb Foundation** - mobile-first SCSS boilerplate, Version 5
+* **jQuery** - C'mon, everybody knows jQuery. (version 2.*)
 * **modernizr** - To check for browser features
 * **TGM Plugin Activation** - PHP Library to set required theme plugins
 
