@@ -10,65 +10,62 @@ and is called at the beginning, after that we call the rest
 of the styles inside media queries.
 ******************************************************************/
 
+@charset "UTF-8";
 
 //
 // CONFIGURATIONS
 //
-@import "variables";
+
+// Make sure the charset is set appropriately
+@import "settings";
 
 //
 // ZURB FOUNDATION
 //
 
-@import "../vendor/foundation/scss/foundation/components/global";
-@import "../vendor/foundation/scss/foundation/components/grid";
-//@import "../vendor/foundation/scss/foundation/components/visibility";
-//@import "../vendor/foundation/scss/foundation/components/block-grid";
-//@import "../vendor/foundation/scss/foundation/components/type";
-//@import "../vendor/foundation/scss/foundation/components/buttons";
-//@import "../vendor/foundation/scss/foundation/components/forms";
-//@import "../vendor/foundation/scss/foundation/components/button-groups";
-//@import "../vendor/foundation/scss/foundation/components/dropdown-buttons";
-//@import "../vendor/foundation/scss/foundation/components/split-buttons";
-//@import "../vendor/foundation/scss/foundation/components/flex-video";
-//@import "../vendor/foundation/scss/foundation/components/section";
-//@import "../vendor/foundation/scss/foundation/components/top-bar";
-//@import "../vendor/foundation/scss/foundation/components/orbit";
-//@import "../vendor/foundation/scss/foundation/components/reveal";
-//@import "../vendor/foundation/scss/foundation/components/joyride";
-//@import "../vendor/foundation/scss/foundation/components/clearing";
-//@import "../vendor/foundation/scss/foundation/components/alert-boxes";
-//@import "../vendor/foundation/scss/foundation/components/breadcrumbs";
-//@import "../vendor/foundation/scss/foundation/components/custom-forms";
-//@import "../vendor/foundation/scss/foundation/components/keystrokes";
-//@import "../vendor/foundation/scss/foundation/components/labels";
-//@import "../vendor/foundation/scss/foundation/components/inline-lists";
-//@import "../vendor/foundation/scss/foundation/components/pagination";
-//@import "../vendor/foundation/scss/foundation/components/panels";
-//@import "../vendor/foundation/scss/foundation/components/pricing-tables";
-//@import "../vendor/foundation/scss/foundation/components/progress-bars";
-//@import "../vendor/foundation/scss/foundation/components/side-nav";
-//@import "../vendor/foundation/scss/foundation/components/sub-nav";
-//@import "../vendor/foundation/scss/foundation/components/switch";
-//@import "../vendor/foundation/scss/foundation/components/magellan";
-//@import "../vendor/foundation/scss/foundation/components/tables";
-//@import "../vendor/foundation/scss/foundation/components/thumbs";
-//@import "../vendor/foundation/scss/foundation/components/tooltips";
-//@import "../vendor/foundation/scss/foundation/components/dropdown";
+@import
+  //"../vendor/foundation/scss/foundation/components/accordion",
+  //"../vendor/foundation/scss/foundation/components/alert-boxes",
+  //"../vendor/foundation/scss/foundation/components/block-grid",
+  //"../vendor/foundation/scss/foundation/components/breadcrumbs",
+  //"../vendor/foundation/scss/foundation/components/button-groups",
+  //"../vendor/foundation/scss/foundation/components/buttons",
+  //"../vendor/foundation/scss/foundation/components/clearing",
+  //"../vendor/foundation/scss/foundation/components/dropdown",
+  //"../vendor/foundation/scss/foundation/components/dropdown-buttons",
+  //"../vendor/foundation/scss/foundation/components/flex-video",
+  //"../vendor/foundation/scss/foundation/components/forms",
+  "../vendor/foundation/scss/foundation/components/grid",
+  //"../vendor/foundation/scss/foundation/components/inline-lists",
+  //"../vendor/foundation/scss/foundation/components/joyride",
+  //"../vendor/foundation/scss/foundation/components/keystrokes",
+  //"../vendor/foundation/scss/foundation/components/labels",
+  //"../vendor/foundation/scss/foundation/components/magellan",
+  //"../vendor/foundation/scss/foundation/components/orbit",
+  //"../vendor/foundation/scss/foundation/components/pagination",
+  //"../vendor/foundation/scss/foundation/components/panels",
+  //"../vendor/foundation/scss/foundation/components/pricing-tables",
+  //"../vendor/foundation/scss/foundation/components/progress-bars",
+  //"../vendor/foundation/scss/foundation/components/reveal",
+  //"../vendor/foundation/scss/foundation/components/side-nav",
+  //"../vendor/foundation/scss/foundation/components/split-buttons",
+  //"../vendor/foundation/scss/foundation/components/sub-nav",
+  //"../vendor/foundation/scss/foundation/components/switch",
+  //"../vendor/foundation/scss/foundation/components/tables",
+  //"../vendor/foundation/scss/foundation/components/tabs",
+  //"../vendor/foundation/scss/foundation/components/thumbs",
+  //"../vendor/foundation/scss/foundation/components/tooltips",
+  //"../vendor/foundation/scss/foundation/components/offcanvas",
+  "../vendor/foundation/scss/foundation/components/visibility";
+
+// import normalize
+@import "../vendor/foundation/scss/normalize";
 
 //
 // OTHER FRAMEWORKS
 //
 
 //@import "..."
-
-//
-//
-// IMPORTING STYLES
-//
-
-// import normalize
-@import "normalize";
 
 // import mixins
 @import "mixins";
@@ -103,10 +100,6 @@ in general anyone not viewing on a mobile device. Here's where
 you can add resource intensive styles.
 */
 @media only screen and (min-width: 768px) {
-
-	// import grids
-	//@import "grid";
-
 	// styles in 768up.scss
 	@import "768up";
 
@@ -119,7 +112,6 @@ in general anyone not viewing on a mobile device. Here's where
 you can add resource intensive styles.
 */
 @media only screen and (min-width: 1030px) {
-
 	// styles in 1030up.scss
 	@import "1030up";
 
@@ -130,7 +122,6 @@ LARGE VIEWING SIZE
 This is for the larger monitors and possibly full screen viewers.
 */
 @media only screen and (min-width: 1240px) {
-
 	// styles in 1240up.scss
 	@import "1240up";
 
