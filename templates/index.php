@@ -11,7 +11,7 @@ get_header(); ?>
 
         <?php the_excerpt(); ?>
 
-        <a href="<?php the_permalink(); ?>">Weiterlesen</a>
+        <a href="<?php the_permalink(); ?>">Continue reading</a>
     </article>
 
 <?php endwhile; ?>
@@ -24,7 +24,7 @@ get_header(); ?>
 
 <?php else : ?>
 
-<!-- Keine Artikel gefunden -->
+<!-- There aren't any posts -->
 
 <?php endif; ?>
 

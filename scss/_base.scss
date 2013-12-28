@@ -16,7 +16,8 @@ GENERAL STYLES
 *********************/
 
 body {
-	font-size: 62.5%;
+	font-family: $serif;
+	font-size: 100%;
 	line-height: 1.5;
 	color: #565656;
 }
@@ -103,12 +104,10 @@ a, a:visited {
 H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
 
-@mixin fontHeading(){
-}
-
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
-	@include fontHeading;
+	font-family: $sans-serif;
 	text-rendering: optimizelegibility;
+	font-weight: 500;
 	/*
 	if you're going to use webfonts, be sure to check your weights
 	http://css-tricks.com/watch-your-font-weight/
@@ -121,10 +120,8 @@ h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
 }
 
 h1, .h1 {
-	font-size: 6em;
+	font-size: 2.5em;
 	line-height: 1.333em;
-    text-align: center;
-    text-transform: uppercase;
 }
 
 h2, .h2 {
@@ -152,6 +149,10 @@ h5, .h5 {
 /*********************
 HEADER STYLES
 *********************/
+
+.header {}
+
+	#logo {}
 
 /*********************
 NAVIGATION STYLES
@@ -235,47 +236,15 @@ and more scalable.
 	}  /* end current highlighters */
 
 } /* end .nav */
-  .site-navigation {
-    ul {
-      text-align: center;
-      li {
-        display: inline-block;
-        margin-right: 20px;
 
-        a {
-          color: black;
-        }
-      }
-    }
-  }
-
-/*********************
-FRONT-PAGE
-*********************/
 
 /*********************
 POSTS & CONTENT STYLES
 *********************/
 
-@mixin h1-line-before(){
-  content: "";
-  border-bottom: 4px solid black;
-  display: block;
-  width: 20%;
-  margin: 0 auto;
-}
-
 #content {
-	@include grid-row;
-
-    h1:before {
-      @include h1-line-before;
-    }
+	margin-top: 2.2em;
 }
-        .page-intro {
-          text-align: center;
-          font-size: 3.2em;
-        }
 
 		.hentry {
 
@@ -427,28 +396,6 @@ POSTS & CONTENT STYLES
 		.size-large {}
 		.size-medium {}
 		.size-thumbnail {}
-
-
-
-/******************************************************************
-PRODUKTE
-******************************************************************/
-.products {
-  .products-list {
-    li:first-child {
-      @include grid-column(3);
-    }
-
-    li {
-      @include grid-column(3);
-    }
-
-    li:last-child {
-      @include grid-column(3, true);
-    }
-  }
-}
-
 
 /******************************************************************
 PAGE NAVI STYLES
