@@ -18,8 +18,8 @@
   ],
   "dependencies": {},
   "devDependencies": {
-    "foundation": "~5.0.2", // You should always use a fixed version here
-    "jquery": "~2.0.3", // You can make this variable, but CDN version will not
+    "foundation": "~5.0.2",
+    "jquery": "~2.*",
     "modernizr": "~2.*",
     "tgm-plugin-activation": "https://github.com/thomasgriffin/TGM-Plugin-Activation/archive/develop.zip"
   }
