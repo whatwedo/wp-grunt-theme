@@ -12,14 +12,14 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-yui-compressor');
 
     /**
-     * reads package.json
-     */
-    pkg = grunt.file.readJSON('package.json');
+    * Load in our build configuration file.
+    */
+    var userConfig = require( './build.config.js' );
 
     /**
      * sets build config based on parameter (--dev (default) / --prod)
      */
-    build = {
+    var build = {
         env: (grunt.option('env') == "prod") ? "prod" : "dev",
         folder: (grunt.option('env') == "prod") ? pkg.folders.build_prod : pkg.folders.build_dev,
     };
@@ -28,54 +28,25 @@ module.exports = function(grunt) {
      * ordered list of JS files
      **/
     grunt.option('jsSrc', [
-            'javascripts/test.js',
-            'javascripts/coffee/test.js', // originally javascripts/coffee/test.coffee
+            '<%= vendor_files.js %>',
+            '<%= app_files.js %>', // originally javascripts/coffee/test.coffee
     ]);
-
+    
     /**
-     * Builds JavaScript 
-     */
-    grunt.registerTask('js', [
-        'coffee:compile',
-        (build.env == "prod") ? 'min:scripts' : 'concat:scripts',
-        'clean:coffee',
-    ]);
+    * This is the configuration object Grunt uses to give each plugin its 
+    * instructions.
+    */
+    var taskConfig = {
+        pkg: grunt.file.readJSON('package.json');
 
-    /**
-     * copies required assets
-     */
-    grunt.registerTask('assets', [
-        'copy:images',
-        'copy:library',
-        'copy:templates',
-        'copy:jquery',
-        'copy:modernizr',
-        'copy:tgm'
-    ]);
-
-    /**
-     * Builds whole project for productive env
-     */
-    grunt.registerTask('build', [
-        'clean:build',
-        'js',
-        'sass',
-        'assets'
-    ]);
-
-    /**
-     * Default
-     */
-    grunt.registerTask('default', [
-        'build'
-    ]);
-
-    /**
-     * Build-Steps
-     */
-    grunt.initConfig({
-
-        build: grunt.option('build'),
+        /**
+        * Sets the build option to development or productive,
+        * based on user parameter
+        */
+        build: {
+            env: (grunt.option('env') == "prod") ? "prod" : "dev",
+            folder: (grunt.option('env') == "prod") ? '<%= prod_build_dir %>' : '<%= dev_build_dir %>',
+        };
 
         /**
          * Watchers
@@ -125,9 +96,9 @@ module.exports = function(grunt) {
                         '/**',
                         ' * Theme Name: My fancy theme' + (build.env == "dev" ? " (Development)" : ""),
                         ' * Theme URI: http://whatwedo.ch/',
-                        ' * Author: whatwedo.ch-Team',
+                        ' * Author: <%= pkg.author %>',
                         ' * Author URI: http://whatwedo.ch',
-                        ' * Version: 1.0' + (build.env == "dev" ? " -dev" : ""),
+                        ' * Version: <%= pkg.version %>' + (build.env == "dev" ? " -dev" : ""),
                         ' **/\n'
                     ].join('\n'),
                     style: build.env == "dev" ? 'expanded' : 'compressed'
@@ -178,7 +149,7 @@ module.exports = function(grunt) {
              * outputs a single JavaScript file for dev env
              */
             scripts: {
-                src: grunt.option('jsSrc'),
+                src: ['<%= vendor_files.js %>'],
                 dest: '<%= grunt.option(\'build\').folder %>/javascripts/scripts.js',
             },
         },
@@ -291,10 +262,47 @@ module.exports = function(grunt) {
                 ],
                 dest: '<%= grunt.option(\'build\').folder %>/library/vendor/class-tgm-plugin-activation.php'
             }
-        },
+        }
+    };
+    
+    grunt.option('build', taskConfig.build);
+    grunt.initConfig( grunt.util._.extend( taskConfig, userConfig ) ); 
 
-    });
+    /**
+     * Builds JavaScript 
+     */
+    grunt.registerTask('js', [
+        'coffee:compile',
+        (build.env == "prod") ? 'min:scripts' : 'concat:scripts',
+        'clean:coffee',
+    ]);
 
-    grunt.option('build', build);
+    /**
+     * copies required assets
+     */
+    grunt.registerTask('assets', [
+        'copy:images',
+        'copy:library',
+        'copy:templates',
+        'copy:jquery',
+        'copy:modernizr',
+        'copy:tgm'
+    ]);
 
+    /**
+     * Builds whole project for productive env
+     */
+    grunt.registerTask('build', [
+        'clean:build',
+        'js',
+        'sass',
+        'assets'
+    ]);
+
+    /**
+     * Default
+     */
+    grunt.registerTask('default', [
+        'build'
+    ]);
 };
