@@ -16,7 +16,7 @@ GENERAL STYLES
 *********************/
 
 body {
-	font-family: $serif;
+	font-family: 'Helvetica Neue', 'Open Sans', Helvetica, sans-serif;
 	font-size: 100%;
 	line-height: 1.5;
 	color: #565656;
@@ -75,13 +75,13 @@ LAYOUT & GRID STYLES
 /*********************
 LINK STYLES
 *********************/
-
+$color-link: rgba(52, 152, 219,1.0);
 a, a:visited {
-	color: $link-color;
+	color: $color-link;
 
 	/* on hover */
 	&:hover, &:focus {
-		color: $link-hover;
+		color: darken($color-link, 0.3);
 	}
 
 	/* on click */
@@ -105,7 +105,6 @@ H1, H2, H3, H4, H5 STYLES
 ******************************************************************/
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5 {
-	font-family: $sans-serif;
 	text-rendering: optimizelegibility;
 	font-weight: 500;
 	/*
