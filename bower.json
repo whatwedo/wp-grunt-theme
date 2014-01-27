@@ -16,11 +16,11 @@
     "test",
     "tests"
   ],
-  "dependencies": {},
-  "devDependencies": {
+  "dependencies": {
     "foundation": "~5.0.2",
     "jquery": "~2.*",
     "modernizr": "~2.*",
     "tgm-plugin-activation": "https://github.com/thomasgriffin/TGM-Plugin-Activation/archive/master.zip"
-  }
+  },
+  "devDependencies": {}
 }
