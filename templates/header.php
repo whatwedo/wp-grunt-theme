@@ -39,7 +39,5 @@ global $client; ?>
     </head>
 
     <body <?php body_class(); ?>>
-    <nav id="navigation-main" class="site-navigation" role="navigation">
-    </nav>
 
     <!-- <a href="<?php echo home_url(); ?>" rel="nofollow"><?php bloginfo('name'); ?></a> -->

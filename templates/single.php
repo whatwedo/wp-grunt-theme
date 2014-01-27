@@ -9,7 +9,7 @@ get_header(); ?>
     <article id="post-<?php the_ID(); ?>" <?php post_class('clearfix'); ?> role="article" itemscope itemtype="http://schema.org/BlogPosting">
         <?php the_title(); ?>
 
-        <?php get_template_part('_contents'); ?>
+        <?php the_content(); ?>
     </article>
 
 <?php endwhile; ?>
