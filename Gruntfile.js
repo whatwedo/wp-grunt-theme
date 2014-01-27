@@ -277,7 +277,7 @@ module.exports = function(grunt) {
              */
             modernizr: {
                 src: [
-                    'vendor/foundation/js/vendor/custom.modernizr.js'
+                    'vendor/foundation/js/vendor/modernizr.js'
                 ],
                 dest: '<%= grunt.option(\'build\').folder %>/javascripts/vendor/modernizr.js'
             },
