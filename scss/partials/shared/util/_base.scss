@@ -1,0 +1,15 @@
+/*
+*   UTIL === HELPERS
+*   MIXINS and % classes.
+*   Can be imported in multiple files
+*   Holds non-rendering classes or mixins. Do not place classes in here
+*   since it can be imported multiple times.
+*/
+
+%vertical-align {
+  position: relative;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
