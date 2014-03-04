@@ -8,16 +8,33 @@ Here's where the magic happens. Here, you'll see we are calling in
 the separate media queries. The base mobile goes outside any query
 and is called at the beginning, after that we call the rest
 of the styles inside media queries.
+
+Styles should always be indepent of each other. "Specific"
+Stylesheet can access "Shared" stylesheets.
+
+Import order in final CSS:
+
+- settings
+- partials/shared
+- partials/specific
+
+Place your files with display size name
+in subfolders, e.g. partials/specific/home/_medium-up.scss
+They will be automatically imported
 ******************************************************************/
 
+// Make sure the charset is set appropriately
 @charset "UTF-8";
 
 //
 // CONFIGURATIONS
 //
 
-// Make sure the charset is set appropriately
-@import "settings";
+// Get Helper
+@import "../vendor/foundation/scss/foundation/functions";
+
+// Get settings. Global settings imports all files in the settings folder
+@import "partials/settings/global";
 
 //
 // ZURB FOUNDATION
@@ -61,68 +78,92 @@ of the styles inside media queries.
 // import normalize
 @import "../vendor/foundation/scss/normalize";
 
-//
-// OTHER FRAMEWORKS
-//
-
-//@import "..."
-
-
 /*
 BASE (MOBILE) SIZE
-This are the mobile styles. It's what people see on their phones. If
+These are the mobile styles. It's what people see on their phones. If
 you set a great foundation, you won't need to add too many styles in
 the other stylesheets. Remember, keep it light: Speed is Important.
+
+IMPORTANT: All styles should be independent of each other. If you want to share or extend elements,
+try to make them fit in a stylesheet in the shared folder since it will be imported first.
 */
 
 // styles in base.scss
-@import "base";
+
+// Shared styles are definitions not for a specific page
+// e.g. Navigation, Colors, overall Typography, ...
+@import "partials/shared/**/_base.scss";
+
+// Specific styles are definitions for specific sections
+// of the website.
+// e.g. Home, Products, Shop, Contact, ...
+@import "base", "partials/specific/**/_base.scss";
+
 
 /*
-LARGER MOBILE DEVICES
-This is for devices like the Galaxy Note or something that's
-larger than an iPhone but smaller than a tablet. Let's call them
-tweeners.
+  MEDIA QUERIES
+  Configure: Place a _media-queries.scss in the settings folder
+  Parameters: http://foundation.zurb.com/docs/media-queries.html
 */
-@media only screen and (min-width: 481px) {
 
-	// styles in 481up.scss
-	@import "481up";
-
+/*
+ SMALL SCREENS
+*/
+@media #{$small-only} {
+  // max-width 640px, mobile-only styles, use when QAing mobile issues
+  // To use: Create a file "_small-only.scss" in the scss folder and uncomment next line
+  // @import "small-only", "partials/shared/**/_small-only.scss", "partials/specific/**/_small-only.scss";
 } // end of media query
 
 /*
-TABLET & SMALLER LAPTOPS
-This is the average viewing window. So Desktops, Laptops, and
-in general anyone not viewing on a mobile device. Here's where
-you can add resource intensive styles.
+ MEDIUM SCREENS
 */
-@media only screen and (min-width: 768px) {
-	// styles in 768up.scss
-	@import "768up";
+@media #{$medium-up} { 
+  // min-width 641px, medium screens */
+  @import "medium-up", "partials/shared/**/*", "partials/specific/**/_medium-up.scss";
+} // end of media query
 
+@media #{$medium-only} { 
+  // min-width 641px and max-width 1024px, use when QAing tablet-only issues
+  // To use: Create a file "_medium-only.scss" in the scss folder and uncomment next line
+  // @import "medium-only", "partials/shared/**/_medium-only.scss", "partials/specific/**/_medium-only.scss";
 } // end of media query
 
 /*
-DESKTOP
-This is the average viewing window. So Desktops, Laptops, and
-in general anyone not viewing on a mobile device. Here's where
-you can add resource intensive styles.
+ LARGE SCREENS
 */
-@media only screen and (min-width: 1030px) {
-	// styles in 1030up.scss
-	@import "1030up";
+@media #{$large-up} {
+  // min-width 1025px, large screens
+  @import "large-up", "partials/shared/**/_large-up.scss", "partials/specific/**/_large-up.scss";
+} // end of media query
 
+@media #{$large-only} { 
+  // min-width 1024px and max-width 1440px, use when QAing large screen-only issues
+  // To use: Create a file "_large-only.scss" in the scss folder and uncomment next line
+  // @import "large-only", "partials/shared/**/_large-only.scss", "partials/specific/**/_large-only.scss";
 } // end of media query
 
 /*
-LARGE VIEWING SIZE
-This is for the larger monitors and possibly full screen viewers.
+  X LARGE SCREENS
 */
-@media only screen and (min-width: 1240px) {
-	// styles in 1240up.scss
-	@import "1240up";
+@media #{$xlarge-up} {
+  // min-width 1441px, xlarge screens
+  @import "xlarge-up", "partials/shared/**/_xlarge-up.scss", "partials/specific/**/_xlarge-up.scss";
+} // end of media query
 
+@media #{$xlarge-only} {
+  // min-width 1441px and max-width 1920px, use when QAing xlarge screen-only issues
+  // To use: Create a file "_xlarge-only.scss" in the scss folder and uncomment next line
+  //@import "xlarge-only", "partials/shared/**/_xlarge-only.scss", "partials/specific/**/_xlarge-only.scss";
+} // end of media query
+
+/*
+  XX LARGE SCREENS
+*/
+@media #{$xxlarge-up} {
+  // min-width 1921px, xlarge screens
+  // To use: Create a file "_xxlarge-up.scss" in the scss folder and uncomment next line
+  // @import "xxlarge-up", "partials/shared/**/_xxlarge-up.scss", "partials/specific/**/_xxlarge-up.scss";
 } // end of media query
 
 /*
