@@ -130,7 +130,8 @@ module.exports = function(grunt) {
                         ' * Version: 1.0' + (build.env == "dev" ? " -dev" : ""),
                         ' **/\n'
                     ].join('\n'),
-                    style: build.env == "dev" ? 'expanded' : 'compressed'
+                    style: build.env == "dev" ? 'expanded' : 'compressed',
+                    require: 'sass-globbing'
                 },
                 files: [{
                     expand: true,
