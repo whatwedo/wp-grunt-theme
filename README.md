@@ -2,6 +2,8 @@
 
 A grunt theme boilerplate, compiles and minifies files and copy them from the ```theme-src```to a ```theme```and ```theme-dev```folder.
 
+**Important: This repository is no longer maintained by whatwedo. As we frequently change our workflow and processes, we started a new project with Gulp. See [gulp-wp-theme](https://github.com/whatwedo/gulp-wp-theme).** For an alternative to the Grunt theme, try the more popular [grunt-wp-theme](https://github.com/10up/grunt-wp-theme).
+
 ## 1. Installation
 1. Copy all files and folders to ```/wp-content/themes/<Themename>-src/``` 
 2. Use ```make install``` inside your terminal to get all NPM modules and bower dependencies.
