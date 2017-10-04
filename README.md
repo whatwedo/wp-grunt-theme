@@ -1,3 +1,5 @@
+![abandoned](http://img.shields.io/badge/status-abandoned-red.png)
+
 # wp-grunt-theme
 
 A grunt theme boilerplate, compiles and minifies files and copy them from the ```theme-src```to a ```theme```and ```theme-dev```folder.
